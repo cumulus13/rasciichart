@@ -20,7 +20,7 @@ path = "examples/stock_chart.rs"
 
 [package]
 name = "rasciichart"
-version = "0.2.8"
+version = "0.2.9"
 edition = "2021"
 authors = [ "Hadi Cahyadi <cumulus13@gmail.com>",]
 license = "MIT"

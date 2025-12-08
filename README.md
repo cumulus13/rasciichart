@@ -28,9 +28,15 @@ Beautiful ASCII line charts in Rust with smooth rendering, inspired by [asciicha
 
 Add this to your `Cargo.toml`:
 
+```bash
+cargo add rasciichart
+```
+
+or 
+
 ```toml
 [dependencies]
-rasciichart = "0.2.0"
+rasciichart = "0.2.9"
 ```
 
 ## Quick Start
@@ -45,7 +51,7 @@ fn main() {
 ```
 
 Output:
-```
+```bash
 5.00 │     ╭╮
      │     ││
 4.20 │     ││
