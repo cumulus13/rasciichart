@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.2.4] - 2024-12-08
+## [0.2.6] - 2024-12-08
 
 ### Fixed
 - **PROPERLY fixed real-time flicker** by using format!() to build entire output including clear command in single string
