@@ -289,17 +289,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Changelog
 
-### 0.2.0 (2024)
-- Complete rewrite with better API
-- Added comprehensive error handling
-- Added helper functions
-- Improved documentation
-- Added examples
-- Better edge case handling
-
-### 0.1.0 (2024)
-- Initial release
-- Basic plotting functionality
+see the [CHANGELOG](CHANGELOG.md)
 
 ## Support
 
