@@ -257,5 +257,5 @@ If you still see flicker:
 
 **Summary**: Build entire screen in buffer → Single write → Single flush = ZERO FLICKER! ✨
 
-**Version**: 0.2.6  
+**Version**: 0.2.7  
 **Last Updated**: December 8, 2025

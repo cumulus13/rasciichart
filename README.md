@@ -16,6 +16,14 @@ Beautiful ASCII line charts in Rust with smooth rendering, inspired by [asciicha
 - 🔧 **Helper functions** - for common use cases
 - 🎯 **Production ready** - proper error handling and edge cases
 
+
+## Demo
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/cumulus13/rasciichart/master/demo.gif" alt="rasciichart demo">
+</p>
+
+
 ## Installation
 
 Add this to your `Cargo.toml`:
@@ -38,15 +46,17 @@ fn main() {
 
 Output:
 ```
- 5.00 │     ╭─╮    
- 4.50 │            
- 4.00 │    ╯   ╰   
- 3.50 │           
- 3.00 │   ╯     ╰  
- 2.50 │            
- 2.00 │  ╯       ╰ 
- 1.50 │            
- 1.00 │ ╯         ╰
+5.00 │     ╭╮
+     │     ││
+4.20 │     ││
+     │    ╭╯╰╮
+3.40 │    │  │
+     │   ╭╯  ╰╮
+2.60 │   │    │
+     │   │    │
+1.80 │  ╭╯    ╰╮
+     │  │      │
+1.00 │ │╯      ╰
 ```
 
 ## Examples
