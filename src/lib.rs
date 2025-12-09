@@ -371,7 +371,7 @@ pub fn plot_with_config(series: &[f64], config: Config) -> Result<String> {
 
             let mut chart_part = row[1..].to_vec();
 
-            // If the first chart row is vertical ('│'), delete it so that it is not double axis
+            // If the first chart row is vertical ('│'), replace it so that it is not double axis
             if chart_part.first() == Some(&config.symbols.axis_vertical) {
                 chart_part[0] = ' '; // atau hapus: chart_part.remove(0);
             }
