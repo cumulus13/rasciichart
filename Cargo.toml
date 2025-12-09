@@ -20,7 +20,7 @@ path = "examples/stock_chart.rs"
 
 [package]
 name = "rasciichart"
-version = "0.2.13"
+version = "0.2.14"
 edition = "2021"
 authors = [ "Hadi Cahyadi <cumulus13@gmail.com>",]
 license = "MIT"
@@ -30,9 +30,9 @@ documentation = "https://docs.rs/rasciichart"
 keywords = [ "ascii", "chart", "plot", "terminal", "visualization",]
 categories = [ "command-line-utilities", "visualization",]
 readme = "README.md"
+exclude = [ "demo.gif", "gitignore_backup/",]
 
 [dependencies]
 
 [dev-dependencies]
 rand = "0.8"
-exclude = [ "demo.gif", "gitignore_backup/",]
