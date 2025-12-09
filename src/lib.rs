@@ -281,26 +281,28 @@ pub fn plot_with_config(series: &[f64], config: Config) -> Result<String> {
     let height = config.height;
     let ratio = (height as f64) / range;
 
-    // Initialize canvas
+    // Initialize canvas - no extra width needed
     let mut canvas: Vec<Vec<char>> = vec![vec![' '; config.width]; height + 1];
 
-    // Plot the line
+    // Plot the line - SKIP x=0 (reserved for axis separator)
     let mut y0: Option<usize> = None;
 
-    for (x, &value) in series.iter().enumerate().take(config.width) {
+    for (x, &value) in series.iter().enumerate().take(config.width.saturating_sub(1)) {
         if !value.is_finite() {
             continue;
         }
 
         let y = ((max - value) * ratio).round() as usize;
         let y = y.min(height);
+        
+        let plot_x = x + 1; // Start from x=1, skip x=0
 
         if let Some(y_prev) = y0 {
             if y == y_prev {
                 // Horizontal line
-                canvas[y][x] = config.symbols.horizontal;
+                canvas[y][plot_x] = config.symbols.horizontal;
             } else {
-                // Vertical movement - FIX THE LOGIC HERE!
+                // Vertical movement
                 let (y_start, y_end) = if y_prev < y {
                     (y_prev, y)
                 } else {
@@ -310,32 +312,25 @@ pub fn plot_with_config(series: &[f64], config: Config) -> Result<String> {
                 // Draw vertical connection
                 for y_line in y_start..=y_end {
                     if y_line == y_prev {
-                        // At previous point
                         if y_prev < y {
-                            // Going down (increasing y coordinate = going down on screen)
-                            canvas[y_line][x] = config.symbols.top_right;  // ╮ going down-right
+                            canvas[y_line][plot_x] = config.symbols.top_right;
                         } else {
-                            // Going up (decreasing y coordinate = going up on screen)
-                            canvas[y_line][x] = config.symbols.bottom_right;  // ╯ going up-right
+                            canvas[y_line][plot_x] = config.symbols.bottom_right;
                         }
                     } else if y_line == y {
-                        // At current point
                         if y_prev < y {
-                            // Coming from above (was going down)
-                            canvas[y_line][x] = config.symbols.bottom_left;  // ╰ arrived from down-left
+                            canvas[y_line][plot_x] = config.symbols.bottom_left;
                         } else {
-                            // Coming from below (was going up)
-                            canvas[y_line][x] = config.symbols.top_left;  // ╭ arrived from up-left
+                            canvas[y_line][plot_x] = config.symbols.top_left;
                         }
                     } else {
-                        // In between - vertical line
-                        canvas[y_line][x] = config.symbols.vertical;
+                        canvas[y_line][plot_x] = config.symbols.vertical;
                     }
                 }
             }
         } else {
             // First point
-            canvas[y][x] = config.symbols.vertical;
+            canvas[y][plot_x] = config.symbols.vertical;
         }
 
         y0 = Some(y);
@@ -367,8 +362,24 @@ pub fn plot_with_config(series: &[f64], config: Config) -> Result<String> {
                 " ".repeat(label_width)
             };
 
-            let line: String = row.iter().collect();
-            lines.push(format!("{} {} {}", label, config.symbols.axis_vertical, line));
+            // let line: String = row.iter().collect();
+            // label + │ + chart, x=0 is always space so no double │
+            // lines.push(format!("{}│{}", label, &line[1..]));
+            // Make sure the line starts from column 1 (chart starts here)
+            // let chart_part: String = row[1..].iter().collect();
+            // lines.push(format!("{}{}{}", label, config.symbols.axis_vertical, chart_part));
+
+            let mut chart_part = row[1..].to_vec();
+
+            // If the first chart row is vertical ('│'), delete it so that it is not double axis
+            if chart_part.first() == Some(&config.symbols.axis_vertical) {
+                chart_part[0] = ' '; // atau hapus: chart_part.remove(0);
+            }
+
+            let chart_str: String = chart_part.iter().collect();
+            
+            lines.push(format!("{}{}{}", label, config.symbols.axis_vertical, chart_str));
+
         }
     } else {
         for row in canvas.iter() {
