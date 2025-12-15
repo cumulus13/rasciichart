@@ -1,36 +1,39 @@
-[[example]]
-name = "simple"
-path = "examples/simple.rs"
-
-[[example]]
-name = "advanced"
-path = "examples/advanced.rs"
-
-[[example]]
-name = "multiple_series"
-path = "examples/multiple_series.rs"
-
-[[example]]
-name = "realtime"
-path = "examples/realtime.rs"
-
-[[example]]
-name = "stock_chart"
-path = "examples/stock_chart.rs"
+example = [
+    { name = "simple", path = "examples/simple.rs" },
+    { name = "advanced", path = "examples/advanced.rs" },
+    { name = "multiple_series", path = "examples/multiple_series.rs" },
+    { name = "realtime", path = "examples/realtime.rs" },
+    { name = "stock_chart", path = "examples/stock_chart.rs" },
+]
 
 [package]
 name = "rasciichart"
-version = "0.2.16"
+version = "0.2.17"
 edition = "2021"
-authors = [ "Hadi Cahyadi <cumulus13@gmail.com>",]
+authors = [
+    "Hadi Cahyadi <cumulus13@gmail.com>",
+]
 license = "MIT"
 description = "ASCII chart library for Rust with smooth line rendering, inspired by asciichartpy"
 repository = "https://github.com/cumulus13/rasciichart"
 documentation = "https://docs.rs/rasciichart"
-keywords = [ "ascii", "chart", "plot", "terminal", "visualization",]
-categories = [ "command-line-utilities", "visualization",]
+homepage = "https://github.com/cumulus13/rasciichart"
+keywords = [
+    "ascii",
+    "chart",
+    "plot",
+    "terminal",
+    "visualization",
+]
+categories = [
+    "command-line-utilities",
+    "visualization",
+]
 readme = "README.md"
-exclude = [ "demo.gif", "gitignore_backup/",]
+exclude = [
+    "demo.gif",
+    "gitignore_backup/",
+]
 
 [dependencies]
 
